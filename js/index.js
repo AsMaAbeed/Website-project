@@ -11,7 +11,7 @@ $(window).on('load',function(){
         gsap.to(loadertext,0,{
           display:'none'
         })
-        gsap.to('#loader',1.2,{   //LOADING PAGE TRANSITION
+        gsap.to('#loader',1.2,{  
           y:'-100%',
           ease:'Expo.easeInOut'
       })
@@ -22,10 +22,6 @@ $(window).on('load',function(){
   
 });
 
-// PAGE EFFECT AFTER LOADING
-
-
-//MASONRY ON GALLERY PAGE
 $(function(){
   $('.gallery-grid').masonry({
     itemSelector: '.column',
@@ -43,9 +39,6 @@ $(function(){
     },2000)
   }))
 })
-//MASONRY ON GALLERY PAGE
-
-// GALLERY PAGE SLIDER
 
 new Swiper(' .swiper-container', {
     slidesPerView: 'auto',
@@ -79,18 +72,12 @@ new Swiper(' .swiper-container', {
     mousewheel: true,
     observer: true,  
     observeParents: true,
-  });
-  // SLIDER ON GALLERY PAGE        
+  });       
   
-
-
   $(document).ready(function() {
     $(".image-type").lettering();
   });
 
-
-
-  // CURSOR
    $(function(){
     var $cursor = $('.cursor');
     var $cursortwo = $('.cursor-two')
@@ -165,20 +152,14 @@ new Swiper(' .swiper-container', {
      $('#home .img-container').hover(linkhover,cursor);
      $('.hover').hover(cursorhover,cursor);
   })
-// CURSOR
 
-
-
-
-
-//DISPLAY NAVIGATION CONTENT ON MENUBAR CLICK
 $(function(){
- $('.menu-bar').on('click',function(){ //WHEN MENUBAR IS CLICKED BRING NAVIGATION UP
+ $('.menu-bar').on('click',function(){ 
     gsap.to('#navigation',1,{
     y:'0%',
     ease:'Expo.easeInOut',
-    onComplete:function(){ //WHEN NAVIGATION ANIMATION IS COMPLETED DO THE FOLLOWING
-      gsap.to('.navigation-opacity',.5,{  //GET ELEMENTS OF CLASS 'NAVIGATION-OPACITY' AND TURN THEIR OPACITY TO 1
+    onComplete:function(){ 
+      gsap.to('.navigation-opacity',.5,{  
         opacity:1,
         stagger:.1
       })
@@ -186,12 +167,12 @@ $(function(){
   })
   })
 
-  $('.navigation-close').on('click',function(){ //WHEN NAVIGATION CLOSE IS CLICKED ANIMATE NAVIGATION DOWN
+  $('.navigation-close').on('click',function(){
 
-    gsap.to('.navigation-opacity',.5,{  //GET ELEMENTS OF CLASS 'NAVIGATION-OPACITY' AND TURN THEIR OPACITY TO 0
+    gsap.to('.navigation-opacity',.5,{  
     opacity:0,
     stagger:.05,
-    onComplete:function(){ //WHEN OPACITY ANIMATION IS COMPLETED DO THE FOLLOWING
+    onComplete:function(){
       gsap.to('#navigation',1,{
         y:'100%',
         ease:'Expo.easeInOut',
@@ -203,30 +184,27 @@ $(function(){
 })
 
 
-//PAGE TRANSITIONS 
-
 $(function pagetransition(){
 
-  var links = [...document.querySelectorAll('.page-link')]; // get all elements with class 'page link'
-  var breaker = document.querySelector('#breaker');  //get element with ID Breaker
+  var links = [...document.querySelectorAll('.page-link')];
+  var breaker = document.querySelector('#breaker');  
 
 
-  links.forEach(link => link.addEventListener('click',function(){ //on click on page link element
+  links.forEach(link => link.addEventListener('click',function(){ 
      
-    var page =  link.getAttribute("href");  // get its value of attribute href
+    var page =  link.getAttribute("href");  
 
     if(document.querySelector(page)){
 
-      //DISPLAYBREAKER FUNCTION
       function displaybreaker(){
-          breaker.style.display = 'block';  //display breaker animation
+          breaker.style.display = 'block';  
   
  
           breaker.addEventListener('animationend',function(){
-              this.style.display="none";  // on animation end set the style of breaker to none
+              this.style.display="none"; 
           })
 
-          gsap.to('.navigation-opacity',.5,{  //close navigation
+          gsap.to('.navigation-opacity',.5,{ 
           opacity:0,
           stagger:-.05,
           onComplete:function(){ 
@@ -234,82 +212,50 @@ $(function pagetransition(){
               y:'100%',
               ease:'Expo.easeInOut',
           })
-        }}) //close navigation
+        }}) 
 
       }
 
-      //DISPLAYBREAKER FUNCTION
-  
- 
-      displaybreaker()   // CALL DISPLAYBREAKER FUNCTION
- 
- 
-      //  CHANGEPAGE FUNCTION
       function changepage(){
  
-         var pages = links.map(a=>a.getAttribute("href")) // GET ALL THE PAGES
+         var pages = links.map(a=>a.getAttribute("href")) 
          setTimeout(function(){
-          pages.forEach(a=>document.querySelector(a).style.display='none');  // SET THE STYLE OF ALL THE PAGES TO NONE
-          document.querySelector(page).style.display ='block';  //SET THE STYLE OF THE PAGE THAT HAS BEEN CLICKED TO BLOCK 
+          pages.forEach(a=>document.querySelector(a).style.display='none'); 
+          document.querySelector(page).style.display ='block';  
          },1500)
        }    
-      //  CHANGEPAGE FUNCTION
       
-      changepage()   // CALL CHANGEPAGE FUNCTION
+      changepage()   
     }
   }))
 })
 
-//PAGE TRANSITION
-
-
-
-
-// SORTING OF IMAGES 
-
 $(function(){
-  var sortingbuttons = document.querySelectorAll('.image-sort-button'); //GET ALL IMAGE SORTING BUTTON THEY HAVE A CLASS OF 'IMAGE-SORT-BUTTON'
-  var images = [...document.querySelectorAll('.gallery-img')] //GET ALL IMAGES WITH CLASS 'GALLERY-IMG'
+  var sortingbuttons = document.querySelectorAll('.image-sort-button'); 
+  var images = [...document.querySelectorAll('.gallery-img')] 
 
-  //SORT IMAGES
   sortingbuttons.forEach(button=>button.addEventListener('click',function(){ 
 
-  var sortvalue =  button.dataset.sort; //GET VALUE OF THE 'DATA-SORT' FROM BUTTON WHICH HAS BEEN CLICKED
+  var sortvalue =  button.dataset.sort; 
 
-  images.forEach(image=>image.style.display='none'); //GET ALL THE IMAGES AND SET THEIR DISPLAY TO NONE
+  images.forEach(image=>image.style.display='none'); 
 
-  var imagestoshown = document.querySelectorAll(`[alt='${sortvalue}']`); //GET ALL THE IMAGES WHICH WE NEED TO SHOW
+  var imagestoshown = document.querySelectorAll(`[alt='${sortvalue}']`); 
   
-  imagestoshown.forEach(show=>show.style.display="block") //SET IMAGES TO BLOCK
+  imagestoshown.forEach(show=>show.style.display="block")
 
-  if(sortvalue == 'all'){  //IF BUTTON "ALL" IS CLICKED SET ALL IMAGES TO BLOCK 
+  if(sortvalue == 'all'){ 
     images.forEach(image=>image.style.display='block');
   }
-  //SORT IMAGES
 
-
-
-  //SET NEW MASONRY
     new Masonry( '.gallery-grid', { 
       itemSelector: '.column',
       isAnimated: true
     })
-  //SET NEW MASONRY
-
-
-  //CHANGE BUTTON STYLE
-  sortingbuttons.forEach(buttons=>buttons.classList.remove('active')); //REMOVE CLASSLIST OF ACTIVE FROM CURRENT BUTTON
-  button.classList.add('active'); // ADD CLASS LIST OF ACTIVE TO THE BUTTON WHICH HAS BEEN CLICKED
-
-  //CHANGE BUTTON STYLE
-
-
-
-
+ 
+  sortingbuttons.forEach(buttons=>buttons.classList.remove('active')); 
+  button.classList.add('active'); 
 
   }))
 
 })
-
-  
-// SORTING OF IMAGES 
