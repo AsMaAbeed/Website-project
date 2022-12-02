@@ -1,23 +1,4 @@
-/* Table of content
---------------------------------------------
 
-========
-
---------
-ANIMATION AFTER PAGE LOAD
-MASONRY ON GALLERY PAGE
-SLIDER ON HOME PAGE
-CURSOR 
-NAVIGATION ANIMATION
-PAGE TRANSITIONS 
-IMAGES SORTING
------------
-==========
-
-*/
-
-
-// PAGE EFFECT AFTER LOADING
 $(window).on('load',function(){
 
   var loadertext = document.querySelector('.loader-text-stroke');
